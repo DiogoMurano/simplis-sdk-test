@@ -6,13 +6,14 @@ import kotlin.reflect.KClass
 
 object UserClient : EndpointClient<User>() {
 
-    data class UserCreateRequest(
-        val name: String,
-        val email: String,
-        val country: String
-    )
-
     fun create(user: User): User = requestAndReturnModel {
+
+        data class UserCreateRequest(
+            val name: String,
+            val email: String,
+            val country: String
+        )
+
         val (username, country, email) = user
 
         setBody(
